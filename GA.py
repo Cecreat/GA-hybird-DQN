@@ -104,7 +104,7 @@ def crossover(p1,p2,cross_rate):
     # 随机数小于交叉率
     if rand()<cross_rate:
         # 选取交叉点位
-        cp =randint(1,len(p1)-2)#防止末端导致的为变化
+        cp =randint(1,len(p1)-2)#防止末端导致的未变化
         c1=p1[:cp]+p2[cp:]
         c2=p2[:cp]+p1[cp:]
     return [c1,c2]
@@ -152,10 +152,10 @@ if __name__ == "__main__":
     num_params = 123  # 6*12 + 12 + 12*3 + 3
     boundary = [[-1.0, 1.0]] * num_params  # 所有权重限制在 -1 到 1 之间
     n_bits = 16  # 16位精度
-    n_pop = 30  # 种群规模 (如果电脑卡，可以降低到 20)
+    n_pop = 30  # 种群规模
     n_it = 30  # 迭代代数
     cross_rate = 0.9
-    # 变异率：保证每条超长染色体平均有几个基因发生翻转
+    # 变异率
     mutation_rate = 1.0 / (float(n_bits * len(boundary)))
 
     print(f"开始进化！每条染色体长度为 {n_bits * num_params} 位...")
@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
     print(f"\n进化完成！最高适应度得分为: {final_score:.2f}")
 
-    # 将最优二进制染色体解码，并保存为 NumPy 数组，供 T5 阶段（RL注入）使用
+    # 将最优二进制染色体解码，并保存为 NumPy 数组
     best_weights = decoder(boundary, n_bits, best_chromosome)
     np.save("best_ga_weights.npy", np.array(best_weights))
     print("最优个体权重已保存至 best_ga_weights.npy")
