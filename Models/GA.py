@@ -13,62 +13,92 @@ from Env import SimulationEnv
 
 # 定义6x12x3的神经网络
 class NumpyMLP:
-    def __init__(self,flat_weights):
-        self.w1 =np.array(flat_weights[0:72]).reshape((6,12))
-        self.b1 = np.array(flat_weights[72:84])
-        self.w2 = np.array(flat_weights[84:120]).reshape((12,3))
-        self.b2 = np.array(flat_weights[120:123])
-    # 神经网络的前向推理逻辑
-    def forward(self,state):
-        x=np.array(state)#获取状态值并转化为np数组
-        z1=np.dot(x,self.w1)+self.b1#获得输入后，将输入矩阵和权重矩阵相乘后再加上偏置值
-        a1=np.maximum(0,z1)#通过激活函数ReLU
-        z2=np.dot(a1,self.w2)+self.b2#计算输出矩阵
-        return np.argmax(z2)#从输出的离散动作空间中找出神经网络计算的Q值最大的那一个。注意这里我们求的是最大值的下标是因为神经网络计算的是Q值，所以最终输出的离散动作的范围为0-2，后期要映射为-1~1
+    def __init__(self, weights_1d, input_dim=6, hidden_dim1=32, hidden_dim2=32, output_dim=3):
+        weights_1d = np.array(weights_1d)
+        # 计算每一层权重的切片索引
+        idx1 = input_dim * hidden_dim1
+        idx2 = idx1 + hidden_dim1
+        idx3 = idx2 + hidden_dim1 * hidden_dim2
+        idx4 = idx3 + hidden_dim2
+        idx5 = idx4 + hidden_dim2 * output_dim
 
+        # 提取并重塑第一隐藏层 (Layer 1) 的 W 和 b
+        self.W1 = weights_1d[0:idx1].reshape((input_dim, hidden_dim1))
+        self.b1 = weights_1d[idx1:idx2]
+
+        # 提取并重塑第二隐藏层 (Layer 2) 的 W 和 b
+        self.W2 = weights_1d[idx2:idx3].reshape((hidden_dim1, hidden_dim2))
+        self.b2 = weights_1d[idx3:idx4]
+
+        # 提取并重塑输出层 (Output Layer) 的 W 和 b
+        self.W3 = weights_1d[idx4:idx5].reshape((hidden_dim2, output_dim))
+        self.b3 = weights_1d[idx5:]
+
+    def forward(self, state):
+        # 第一层：矩阵乘法 + ReLU 激活函数 (防止负值)
+        z1 = np.dot(state, self.W1) + self.b1
+        a1 = np.maximum(0, z1)
+
+        # 第二层：矩阵乘法 + ReLU 激活函数
+        z2 = np.dot(a1, self.W2) + self.b2
+        a2 = np.maximum(0, z2)
+
+        # 输出层：矩阵乘法 (不需要激活函数)
+        z3 = np.dot(a2, self.W3) + self.b3
+
+        # 返回 Q 值最大的那个动作的索引 (0, 1 或 2)
+        return np.argmax(z3)
 #定义我们的目标函数
-def Objective(decoded_weights,render=False):
-    #因为我们使用的是pygame环境进行模拟，所以先要实例化环境并且获得MLP的推理结果 然后reset环境获取最新state
+def Objective(decoded_weights, render=False):
     env = SimulationEnv()
     mlp = NumpyMLP(decoded_weights)
     state = env.reset()
 
-    #适应度得分计算是基于移动距离以及agent的生存步共同计算
-    #初始化与目标的距离、生存步以及存活标记
-    initial_dist=env.agent.pos.distance_to(env.target_pos)
-    survival_step=0
-    done=False
+    initial_dist = env.agent.pos.distance_to(env.target_pos)
+    # 【新增】记录整个过程中的最小距离（防止它半路往回跑刷分）
+    min_dist = initial_dist
+    survival_step = 0
+    done = False
 
-    #pygame循环
-    while not done and survival_step<500:
+    # pygame循环
+    while not done and survival_step < 500:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
-        # 推理新的动作
-        action=mlp.forward(state)
-        # 映射为环境的离散动作空间
-        real_action=action-1
-        # 获取环境步进后的新的状态值、奖励值、存活标记
-        state,reward,done=env.step(real_action)
-        # 增加生存步
-        survival_step+=1
+        action = mlp.forward(state)
+        real_action = action - 1
+        state, reward, done = env.step(real_action)
+        survival_step += 1
+
+        # 【新增】实时更新历史离目标最近的距离
+        current_dist = env.agent.pos.distance_to(env.target_pos)
+        if current_dist < min_dist:
+            min_dist = current_dist
 
         if render:
             env.render()
 
+    # ==========================================
+    # 【核心重构】在循环结束后计算最终适应度得分
+    # ==========================================
+    final_dist = env.agent.pos.distance_to(env.target_pos)
 
-        # 步进后的与目标距离
-        final_dist=env.agent.pos.distance_to(env.target_pos)
-        # agent移动的距离
-        distance_progress=initial_dist-final_dist
-        # 计算适应度得分
-        score=survival_step*1.0+distance_progress*0.5
+    # 使用历史最近距离，哪怕它最后被撞死了，只要它曾经很接近终点，也算它牛！
+    distance_progress = initial_dist - min_dist
 
-        # 如果死亡、最终离目标距离大于20 并且生存步小于500那么得分打半折
-        if done and final_dist>20 and survival_step<500:
-            score *=0.5
+    # 1. 基础分：大幅提高距离权重，大幅降低生存步数权重
+    score = distance_progress * 1.0 + survival_step * 0.1
+
+    # 2. 死亡惩罚 (没到终点且中途撞死)
+    if done and final_dist > 20 and survival_step < 500:
+        score *= 0.5  # 撞墙直接成绩打半折
+
+    # 3. 胜利超级大奖与效率奖励 (到达终点)
+    if final_dist <= 20:
+        # 到达奖励 1000分！并且用时越少，奖励越高 (500-survival_step)
+        score += 1000 + (500 - survival_step) * 2.0
 
     return score
 
@@ -149,11 +179,11 @@ def Genetic_Algorithm(boundary, n_bits, n_it,n_pop, cross_rate, mutation_rate):
 
 if __name__ == "__main__":
     # 参数配置
-    num_params = 123  # 6*12 + 12 + 12*3 + 3
+    num_params = 1379  # 6*12 + 12 + 12*3 + 3
     boundary = [[-1.0, 1.0]] * num_params  # 所有权重限制在 -1 到 1 之间
     n_bits = 16  # 16位精度
-    n_pop = 30  # 种群规模
-    n_it = 30  # 迭代代数
+    n_pop = 100  # 种群规模
+    n_it = 50  # 迭代代数
     cross_rate = 0.9
     # 变异率
     mutation_rate = 1.0 / (float(n_bits * len(boundary)))
@@ -165,7 +195,7 @@ if __name__ == "__main__":
 
     # 将最优二进制染色体解码，并保存为 NumPy 数组
     best_weights = decoder(boundary, n_bits, best_chromosome)
-    np.save("best_ga_weights.npy", np.array(best_weights))
+    np.save("../best_ga_weights.npy", np.array(best_weights))
     print("最优个体权重已保存至 best_ga_weights.npy")
 
     print("准备全屏渲染展示最优个体的生存本能...")

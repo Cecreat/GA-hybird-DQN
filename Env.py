@@ -91,7 +91,8 @@ class SimulationEnv:
 
         # 初始化多源移动障碍物
         self.obstacles = [DynamicObstacle() for _ in range(10)]
-
+        #记录回合开始时距离目标的初始距离
+        self.prev_distance = self.agent.pos.distance_to(self.target_pos)
         # 重置完毕后立即调用感知函数获取第一帧的观察状态，并返回给算法，作为网络推理的初始输入
         return self._get_state()
 
@@ -178,7 +179,10 @@ class SimulationEnv:
         # --- 刚体碰撞检测机制  ---
 
         done = False#存活标志
-        reward = 0.1  # 存活奖励
+        current_distance = self.agent.pos.distance_to(self.target_pos)
+        distance_delta = self.prev_distance - current_distance
+        reward = distance_delta * 0.1
+        self.prev_distance = current_distance
 
         # 检测障碍物碰撞 (失败条件)
         for obs in self.obstacles:
@@ -186,18 +190,18 @@ class SimulationEnv:
                 done = True
                 reward = -10.0  # 碰撞惩罚
 
-        # 边界检测
+            # 3. 边界检测
         if self.agent.pos.x < 0 or self.agent.pos.x > WIDTH or self.agent.pos.y < 0 or self.agent.pos.y > HEIGHT:
             done = True
             reward = -10.0
 
-        # 检测目标到达 (胜利条件)
-        if self.agent.pos.distance_to(self.target_pos) < 20:
+            # 4. 检测目标到达 (胜利条件)
+        if current_distance < 20:  # 直接复用前面算好的 current_distance
             done = True
-            reward = 20.0
+            reward = 200.0
 
         next_state = self._get_state()
-        print(f"最新状态为：{next_state}，当前奖励值：{reward}，是否死亡{done}")
+        print(f"最新状态为：{next_state}，当前奖励值：{reward:.3f}，是否死亡{done}")
         return next_state, reward, done
 
     # 渲染所有实体和背景以及控制帧率

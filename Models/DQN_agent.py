@@ -1,23 +1,23 @@
+import os
 import numpy as np
-import pygame
 import tensorflow as tf
-from tensorflow.python.ops.nn_impl_distribute import compute_average_loss
-# from tensorflow_probability import optimizer
+import matplotlib.pyplot as plt
 
 # TF-Agents 相关组件
 from tf_agents.environments import py_environment
 from tf_agents.environments import tf_py_environment
+from tf_agents.agents.dqn import dqn_agent
+from tf_agents.networks import q_network
+from tf_agents.policies import random_tf_policy
+from tf_agents.replay_buffers import tf_uniform_replay_buffer
 from tf_agents.specs import array_spec
 from tf_agents.trajectories import time_step as ts
 from tf_agents.trajectories import trajectory
-from tf_agents.networks import q_network
-from tf_agents.agents.dqn import dqn_agent
-from tf_agents.replay_buffers import tf_uniform_replay_buffer
-from tf_agents.policies import random_tf_policy
 from tf_agents.utils import common
 
 # 导入我们自己写的 Pygame 环境
 from Env import SimulationEnv
+
 
 # 将python环境包装成TF环境
 class TFAgentSimulationEnv(py_environment.PyEnvironment):
@@ -72,7 +72,7 @@ class TFAgentSimulationEnv(py_environment.PyEnvironment):
             return ts.transition(self._state,reward=reward,discount=0.99)
 def train_tf_agents_dqn():
     # 超参数
-    num_iterations = 20000  # 总训练迭代次数（不是回合数，是进行多少次梯度下降）
+    num_iterations = 60000  # 总训练迭代次数（不是回合数，是进行多少次梯度下降）
     initial_collect_steps = 1000  # 训练开始前，用随机动作收集多少步数据来“预热”经验池
     collect_steps_per_iteration = 1  # 每次梯度下降前，在环境中走几步收集新数据
     replay_buffer_max_length = 10000  # 经验回放池的最大容量，满了会覆盖最旧的数据
@@ -80,6 +80,9 @@ def train_tf_agents_dqn():
     learning_rate = 1e-3  # Adam 优化器的学习率
     log_interval = 200  # 每隔 200 步在控制台打印一次 Loss 损失值
     eval_interval = 1000  # 每隔 1000 步暂停训练，运行几局测试来评估当前模型的真实水平
+    plot_steps = []
+    plot_returns = []
+
 
     # 实例化写的环境包装器，并通过TFPyEnvironment在底层将python环境吐出的所有数据转换为TF原生的tf.Tensor张量，并自动加上一个batch维度表示第几个batch
     py_env=TFAgentSimulationEnv()
@@ -90,10 +93,10 @@ def train_tf_agents_dqn():
     eval_tf_env=tf_py_environment.TFPyEnvironment(eval_py_env)
 
     # 构建Q神经网络（6x12x3）输入层6 6维观测向量.隐藏层12，输出层3 3维动作向量
-    q_net=q_network.QNetwork(
+    q_net = q_network.QNetwork(
         tf_env.observation_spec(),
         tf_env.action_spec(),
-        fc_layer_params=(12, )
+        fc_layer_params=(32, 32)
     )
 
     # 优化器使用经典的Adam优化器，创建一个tf变量来记录当前是第几次迭代
@@ -120,6 +123,14 @@ def train_tf_agents_dqn():
         epsilon_greedy=lambda:epsilon_fn(train_step_counter)
     )
     agent.initialize()
+    checkpoint_dir = os.path.join(os.getcwd(), '../dqn_checkpoint')
+    train_checkpointer = common.Checkpointer(
+        ckpt_dir=checkpoint_dir,
+        max_to_keep=1,
+        agent=agent,
+        policy=agent.policy,
+        global_step=train_step_counter
+    )
 
     # 构建经验回放缓冲区
     replay_buffer =tf_uniform_replay_buffer.TFUniformReplayBuffer(
@@ -163,15 +174,27 @@ def train_tf_agents_dqn():
 
 
         if step%eval_interval==0:
-            avg_return =compute_avg_return(eval_tf_env,agent.policy, num_episodes=5)
+            avg_return =compute_avg_return(eval_tf_env,agent.policy, num_episodes=10)
             print(f"--- 评估 --- 步数: {step} | 平均回报 (Avg Return): {avg_return:.2f}")
+            plot_steps.append(step)
+            plot_returns.append(avg_return)
+            train_checkpointer.save(train_step_counter)
 
-    # 在 20000 步训练结束后保存最终策略
+            plt.figure(figsize=(10, 6))
+            plt.plot(plot_steps, plot_returns, label='Baseline RL', color='red', linewidth=2)
+            plt.xlabel('Training Steps')
+            plt.ylabel('Average Return')
+            plt.title('Convergence Speed: Evaluation Return over Training Steps')
+            plt.grid(True, linestyle='--', alpha=0.6)
+            plt.legend()
+
+            plt.savefig('baseline_convergence_curve.png', dpi=300)
+            print("\n收敛曲线已保存为: baseline_convergence_curve.png")
+
+    # 在 训练结束后保存最终策略
     from tf_agents.policies import policy_saver
-    import os
-
     print("正在保存控制组 A (纯 DQN) 的最优策略...")
-    save_dir = os.path.join(os.getcwd(), 'baseline_dqn_policy')
+    save_dir = os.path.join(os.getcwd(), '../baseline_dqn_policy')
     saver = policy_saver.PolicySaver(agent.policy)
     saver.save(save_dir)
     print(f"模型已成功保存至: {save_dir}")
