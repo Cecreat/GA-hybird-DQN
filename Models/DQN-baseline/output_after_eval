@@ -1,0 +1,44 @@
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 39.060
+Success Rate: 0.350
+Collision Rate: 0.650
+Obstacle Collision Rate: 0.610
+Boundary Collision Rate: 0.040
+Success Count: 35
+Collision Count: 65
+Obstacle Collision Count: 61
+Boundary Collision Count: 4
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 35, 'mean_path_efficiency': 1.0768401622772217, 'median_path_efficiency': 1.0410550832748413, 'min_path_efficiency': 0.9575262665748596, 'max_path_efficiency': 2.2410178184509277}
+Final evaluation records saved to: D:\MSc_Project\Models\DQN-baseline\runs\dqn_obs13_fc64_64_act5_(1)\Final_Evaluation_Records.csv
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 30.951
+Success Rate: 0.300
+Collision Rate: 0.700
+Obstacle Collision Rate: 0.670
+Boundary Collision Rate: 0.030
+Success Count: 30
+Collision Count: 70
+Obstacle Collision Count: 67
+Boundary Collision Count: 3
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 30, 'mean_path_efficiency': 1.0622371435165405, 'median_path_efficiency': 1.044701337814331, 'min_path_efficiency': 0.9593956470489502, 'max_path_efficiency': 1.2277299165725708}
+Final evaluation records saved to: D:\MSc_Project\Models\DQN-baseline\runs\dqn_obs13_fc64_64_act5_(2)\Final_Evaluation_Records.csv
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 40.429
+Success Rate: 0.360
+Collision Rate: 0.640
+Obstacle Collision Rate: 0.630
+Boundary Collision Rate: 0.010
+Success Count: 36
+Collision Count: 64
+Obstacle Collision Count: 63
+Boundary Collision Count: 1
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 36, 'mean_path_efficiency': 1.0735960006713867, 'median_path_efficiency': 1.0361483097076416, 'min_path_efficiency': 0.9695664644241333, 'max_path_efficiency': 1.4613431692123413}
+Final evaluation records saved to: D:\MSc_Project\Models\DQN-baseline\runs\dqn_obs13_fc64_64_act5_(3)\Final_Evaluation_Records.csv

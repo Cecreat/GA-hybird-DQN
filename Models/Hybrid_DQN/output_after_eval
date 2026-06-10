@@ -1,0 +1,44 @@
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 41.839
+Success Rate: 0.360
+Collision Rate: 0.640
+Obstacle Collision Rate: 0.630
+Boundary Collision Rate: 0.010
+Success Count: 36
+Collision Count: 64
+Obstacle Collision Count: 63
+Boundary Collision Count: 1
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 36, 'mean_path_efficiency': 1.0465240478515625, 'median_path_efficiency': 1.031734585762024, 'min_path_efficiency': 0.950951099395752, 'max_path_efficiency': 1.355207085609436}
+Final evaluation records saved to: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(1)\Final_Hybrid_Evaluation_Records.csv
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 52.384
+Success Rate: 0.420
+Collision Rate: 0.580
+Obstacle Collision Rate: 0.540
+Boundary Collision Rate: 0.040
+Success Count: 42
+Collision Count: 58
+Obstacle Collision Count: 54
+Boundary Collision Count: 4
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 42, 'mean_path_efficiency': 1.0317509174346924, 'median_path_efficiency': 1.0086711645126343, 'min_path_efficiency': 0.9592550992965698, 'max_path_efficiency': 1.2779422998428345}
+Final evaluation records saved to: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(3)\Final_Hybrid_Evaluation_Records.csv
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 57.321
+Success Rate: 0.450
+Collision Rate: 0.550
+Obstacle Collision Rate: 0.550
+Boundary Collision Rate: 0.000
+Success Count: 45
+Collision Count: 55
+Obstacle Collision Count: 55
+Boundary Collision Count: 0
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 45, 'mean_path_efficiency': 1.1275720596313477, 'median_path_efficiency': 1.0416375398635864, 'min_path_efficiency': 0.9703128337860107, 'max_path_efficiency': 2.166210889816284}
+Final evaluation records saved to: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(2)\Final_Hybrid_Evaluation_Records.csv

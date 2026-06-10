@@ -1,0 +1,86 @@
+本项目通过对比纯DQN和混合GA的DQN在智能体避障目标过程中的训练和评估表现
+判断混合了GA的DQN强化学习是否可以解决传统纯DQN强化学习在训练早期的冷启动困境
+
+why？为什么我们要解决冷启动
+
+冷启动困境的影响
+    DQN 一开始依赖 replay buffer 里的数据学习，如果前 500 个 episode 大部分都是:
+                            状态 -> 随机动作 -> 很快碰撞 -> 负奖励。
+    那么 replay buffer 里充满失败经验。网络学到的不是“如何到达目标”，而是大量短程失败轨迹。
+    然后，导航任务里，成功奖励通常是稀疏的，比如只有到达目标才给大正奖励。如果经验池中的成功样本太少。那么早期几乎一直碰撞，DQN 很难见到成功轨迹，
+    自然也很难学到“哪些状态-动作序列最终能成功”。这样会降低训练效率，影响模型的收敛速度。同时，早期全是碰撞，Q 值更新会被负奖励主导，模型容易形成保守或错误策略。
+    例如一直转圈、卡在某种动作偏好，或者学不到稳定避障行为。
+
+
+解决思路：
+
+使用GA进行控制器的最优参数启发式搜索。目的是找到一组控制器参数输出的动作命令轨迹能够确保智能体一个生命周期得到的reward尽可能多。
+
+    params[0] = w_target 目标方向权重。控制智能体朝目标偏航角修正。
+
+    params[1] = w_side 左右障碍物危险差异权重。“left_danger > right_danger 时，说明左侧更危险，应倾向向右转。”
+
+    params[2] = w_front 正前方危险权重。当前方射线很短时，增强避让。
+
+    params[3] = w_front_group 前方一组射线危险权重。 不只看正中间一根 ray，而是看 rays[4:7] 的局部危险。
+
+    params[4] = bias 转向偏置。
+
+    params[5] = threshold_small 小转向阈值。
+
+    params[6] = threshold_large 大转向阈值。
+
+
+使用GA控制器参数填充DQN replay buffer：
+    GA 得到 best_params
+            ↓
+    每一步读取当前 state
+            ↓
+    heuristic_action(state, best_params) 计算动作
+            ↓
+    环境执行动作
+            ↓
+    得到 reward、next_state、done
+            ↓
+    把这一步 transition(trajectory) 存入 replay buffer
+            ↓
+    如果 done，就 reset 环境，开始下一条轨迹
+
+
+通过这个流程来取代纯DQN前期对replay buffer的随机探索策略。让replay buffer的前期质量提升，进而提升训练效率，加快模型的收敛速度
+
+
+评价指标：Baseline DQN 和 Hybrid DQN各训练三次；每次训练出来的模型会进行一次评估（在环境中运行100轮并统计各个指标）
+
+Training Stats:评价是否能缓解冷启动问题。
+    Training Early Collision Rate:统计模型在前500个training step(模型反向传播一次)中碰撞次数的占比。
+        Baseline mean Early Collision Rate = 0.983
+        Hybrid Early Collision Rate = 0.717
+
+    Average Return over Training Steps: 每2000次training step对模型当前能力进行评估，运行50轮评估来统计这50轮的平均回报
+    Convergence Step:  用来衡量模型首次达到稳定性能水平的速度，即模型多快达到一个可接受性能水平？convergence：当连续 window_size 次评估中，Avg Return 都大于等于 threshold 时，认为模型进行第一次收敛。
+        Baseline ： 早期及其容易被负奖励主导，导致模型真正学会如何进行有效避障时间较长，平均Convergence Step=79333
+        Hybrid：早期不再被负奖励主导，模型在很前期就学会了如何进行有效避障。 平均Convergence Step=32666
+
+Evaluation Stats：主要用来评估模型的performance
+    Average Return over Evaluation：
+        Baseline：36.813
+        Hybrid：50.515
+    Success Rate over Evaluation：
+        Baseline： 0.34
+        Hybrid： 0.41
+    Path Efficiency：actual path length / optimal path length（Euclidean distance between agent original position and target）
+        Baseline： 1.0708
+        Hybrid： 1.0685
+
+
+
+总的来说 Hybrid在最终模型的performance上并没有比Baseline有着较大的提升
+但是Hybrid完全可以解决Baseline早期cold start问题，让 DQN 一开始少收集垃圾碰撞经验，多收集有学习价值的安全轨迹，
+从而提高训练初期的稳定性和样本效率。
+
+
+
+
+
+
