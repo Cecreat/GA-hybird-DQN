@@ -16,7 +16,7 @@ class DynamicObstacle:
         # 设置了障碍物的的初始出生位置，随机出生在中间地带
         self.pos = Vector2(random.randint(100, 700), random.randint(100, 500))
         # 定义了障碍物的物理和渲染半径，后续智能体的射线探测和刚体碰撞检测都依赖于这个半径
-        self.radius = 20
+        self.radius = 18
         # 随机移动方向和速度 random.choice([-1, 1])在x和y轴随机挑选-1和1.产生四个反向（左上、左下、右上、右下）并进行归一化将方向缩放为单位向量确保斜向速度。最后乘上速度计算出速度向量
         self.velocity = Vector2(random.choice([-1, 1]), random.choice([-1, 1])).normalize() * 2
 
@@ -96,7 +96,7 @@ class SimulationEnv:
         self.actual_path_length = 0.0
 
 
-        while len(self.obstacles) < 10:
+        while len(self.obstacles) < 15:
             obs = DynamicObstacle()
             safe_from_agent = obs.pos.distance_to(self.agent.pos) > self.agent.radius + obs.radius + 80
             safe_from_target = obs.pos.distance_to(self.target_pos) > obs.radius + 50
@@ -232,7 +232,7 @@ class SimulationEnv:
 
         # 1. 障碍物碰撞死亡机制
         for obs in self.obstacles:
-            if self.agent.pos.distance_to(obs.pos) < (self.agent.radius + obs.radius):
+            if self.agent.pos.distance_to(obs.pos) < (self.agent.radius + obs.radius-10):
                 done = True
                 termination_reason = "obstacle_collision"
                 reward = -50.0
