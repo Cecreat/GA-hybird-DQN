@@ -37,3 +37,41 @@ Baseline collision curve 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64
 
 convergence_step 如何计算
 如何定义convergence
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+[Baseline DQN] 训练结束，保存最终 checkpoint...
+最终 checkpoint 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(1)\checkpoint
+Baseline Training Early Collision Rate: 0.904
+Baseline Training Success Rate: 0.344
+Baseline Convergence Stats: {'converged': True, 'convergence_step': 10000, 'convergence_return': 101.32944793701172}
+Episode records 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(1)\Baseline_Training_Episode_Records.csv
+Baseline episode records 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(1)\Baseline_Training_Episode_Records.csv
+Baseline monitor records 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(1)\Baseline_Training_Monitor_Records.csv
+Baseline convergence curve 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(1)\Baseline_Convergence_Curve.png
+Baseline collision curve 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(1)\Baseline_Early_Collision_Rate_Decay_Curve.png
+
+
+[Baseline DQN] 训练结束，保存最终 checkpoint...
+最终 checkpoint 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(2)\checkpoint
+Baseline Training Early Collision Rate: 0.908
+Baseline Training Success Rate: 0.355
+Baseline Convergence Stats: {'converged': True, 'convergence_step': 10000, 'convergence_return': 97.1100860595703}
+Episode records 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(2)\Baseline_Training_Episode_Records.csv
+Baseline episode records 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(2)\Baseline_Training_Episode_Records.csv
+Baseline monitor records 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(2)\Baseline_Training_Monitor_Records.csv
+Baseline convergence curve 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(2)\Baseline_Convergence_Curve.png
+Baseline collision curve 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(2)\Baseline_Early_Collision_Rate_Decay_Curve.png
+
+
+[Baseline DQN] 训练结束，保存最终 checkpoint...
+最终 checkpoint 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(3)\checkpoint
+Baseline Training Early Collision Rate: 0.866
+Baseline Training Success Rate: 0.390
+Baseline Convergence Stats: {'converged': True, 'convergence_step': 10000, 'convergence_return': 87.61471405029297}
+Episode records 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(3)\Baseline_Training_Episode_Records.csv
+Baseline episode records 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(3)\Baseline_Training_Episode_Records.csv
+Baseline monitor records 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(3)\Baseline_Training_Monitor_Records.csv
+Baseline convergence curve 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(3)\Baseline_Convergence_Curve.png
+Baseline collision curve 已保存至: D:\MSc_Project\Models\runs\dqn_obs13_fc64_64_act5_5obs_(3)\Baseline_Early_Collision_Rate_Decay_Curve.png

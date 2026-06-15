@@ -64,7 +64,7 @@ class Train:
         )
         agent.initialize()
 
-        run_dir = BASE_DIR / "runs" / "dqn_obs13_fc64_64_act5_(3)"
+        run_dir = BASE_DIR / "runs" / "dqn_obs13_fc64_64_act5_5obs_(3)"
         checkpoint_dir = run_dir / "checkpoint"
 
         plot_path = run_dir / "Baseline_Convergence_Curve.png"

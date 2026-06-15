@@ -598,10 +598,10 @@ def save_history(history, csv_path):
 if __name__ == "__main__":
     np.random.seed(42)
 
-    run_dir = CURRENT_DIR / "runs" / "ga_heuristic_controller"
+    run_dir = CURRENT_DIR / "runs" / "ga_heuristic_controller_5obs"
     run_dir.mkdir(parents=True, exist_ok=True)
 
-    best_params_path = run_dir / "best_ga_heuristic_params.npy"
+    best_params_path = run_dir / "best_ga_heuristic_params_5obs.npy"
     final_eval_csv_path = run_dir / "GA_Heuristic_Final_Evaluation.csv"
 
     print("开始 GA 进化低维启发式控制器参数。")

@@ -96,7 +96,7 @@ class SimulationEnv:
         self.actual_path_length = 0.0
 
 
-        while len(self.obstacles) < 15:
+        while len(self.obstacles) < 5:
             obs = DynamicObstacle()
             safe_from_agent = obs.pos.distance_to(self.agent.pos) > self.agent.radius + obs.radius + 80
             safe_from_target = obs.pos.distance_to(self.target_pos) > obs.radius + 50
