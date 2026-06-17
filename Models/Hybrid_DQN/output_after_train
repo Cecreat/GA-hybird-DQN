@@ -30,3 +30,39 @@ Hybrid episode records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybri
 Hybrid monitor records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(3)\Hybrid_Training_Monitor_Records.csv
 Hybrid convergence curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(3)\Hybrid_Convergence_Curve.png
 Hybrid collision curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(3)\Hybrid_Early_Collision_Rate_Decay_Curve.png
+
+
+------------------------------------------------------------------------------------------------
+[Hybrid DQN] 训练结束，保存最终 checkpoint...
+最终 checkpoint 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(1)\checkpoint
+Hybrid Training Early Collision Rate: 0.382
+Hybrid Training Success Rate: 0.644
+Hybrid Convergence Stats: {'converged': True, 'convergence_step': 10000, 'convergence_return': 74.43616561889648}
+Episode records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(1)\Hybrid_Training_Episode_Records.csv
+Hybrid episode records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(1)\Hybrid_Training_Episode_Records.csv
+Hybrid monitor records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(1)\Hybrid_Training_Monitor_Records.csv
+Hybrid convergence curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(1)\Hybrid_Convergence_Curve.png
+Hybrid collision curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(1)\Hybrid_Early_Collision_Rate_Decay_Curve.png
+
+[Hybrid DQN] 训练结束，保存最终 checkpoint...
+最终 checkpoint 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(2)\checkpoint
+Hybrid Training Early Collision Rate: 0.406
+Hybrid Training Success Rate: 0.659
+Hybrid Convergence Stats: {'converged': True, 'convergence_step': 12000, 'convergence_return': 94.71526947021485}
+Episode records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(2)\Hybrid_Training_Episode_Records.csv
+Hybrid episode records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(2)\Hybrid_Training_Episode_Records.csv
+Hybrid monitor records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(2)\Hybrid_Training_Monitor_Records.csv
+Hybrid convergence curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(2)\Hybrid_Convergence_Curve.png
+Hybrid collision curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(2)\Hybrid_Early_Collision_Rate_Decay_Curve.png
+
+
+[Hybrid DQN] 训练结束，保存最终 checkpoint...
+最终 checkpoint 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\checkpoint
+Hybrid Training Early Collision Rate: 0.372
+Hybrid Training Success Rate: 0.628
+Hybrid Convergence Stats: {'converged': True, 'convergence_step': 10000, 'convergence_return': 98.7441192626953}
+Episode records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\Hybrid_Training_Episode_Records.csv
+Hybrid episode records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\Hybrid_Training_Episode_Records.csv
+Hybrid monitor records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\Hybrid_Training_Monitor_Records.csv
+Hybrid convergence curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\Hybrid_Convergence_Curve.png
+Hybrid collision curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\Hybrid_Early_Collision_Rate_Decay_Curve.png

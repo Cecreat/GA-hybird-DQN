@@ -42,3 +42,52 @@ Boundary Collision Count: 1
 Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
 Path Efficiency: {'success_count': 36, 'mean_path_efficiency': 1.0735960006713867, 'median_path_efficiency': 1.0361483097076416, 'min_path_efficiency': 0.9695664644241333, 'max_path_efficiency': 1.4613431692123413}
 Final evaluation records saved to: D:\MSc_Project\Models\DQN-baseline\runs\dqn_obs13_fc64_64_act5_(3)\Final_Evaluation_Records.csv
+
+
+-----------------------------------------------------------------------------------------------
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 109.917
+Success Rate: 0.730
+Collision Rate: 0.270
+Obstacle Collision Rate: 0.260
+Boundary Collision Rate: 0.010
+Success Count: 73
+Collision Count: 27
+Obstacle Collision Count: 26
+Boundary Collision Count: 1
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 73, 'mean_path_efficiency': 1.0287673473358154, 'median_path_efficiency': 1.010424017906189, 'min_path_efficiency': 0.9478951692581177, 'max_path_efficiency': 1.6219849586486816}
+Final evaluation records saved to: D:\MSc_Project\Models\DQN-baseline\runs\dqn_obs13_fc64_64_act5_5obs_(1)\Final_Evaluation_Records.csv
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 103.436
+Success Rate: 0.700
+Collision Rate: 0.300
+Obstacle Collision Rate: 0.300
+Boundary Collision Rate: 0.000
+Success Count: 70
+Collision Count: 30
+Obstacle Collision Count: 30
+Boundary Collision Count: 0
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 70, 'mean_path_efficiency': 1.060024380683899, 'median_path_efficiency': 1.0121972560882568, 'min_path_efficiency': 0.9490721225738525, 'max_path_efficiency': 2.1004867553710938}
+Final evaluation records saved to: D:\MSc_Project\Models\DQN-baseline\runs\dqn_obs13_fc64_64_act5_5obs_(2)\Final_Evaluation_Records.csv
+
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 106.594
+Success Rate: 0.720
+Collision Rate: 0.280
+Obstacle Collision Rate: 0.260
+Boundary Collision Rate: 0.020
+Success Count: 72
+Collision Count: 28
+Obstacle Collision Count: 26
+Boundary Collision Count: 2
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 72, 'mean_path_efficiency': 1.0278449058532715, 'median_path_efficiency': 0.9999489784240723, 'min_path_efficiency': 0.9489108920097351, 'max_path_efficiency': 1.351544737815857}
+Final evaluation records saved to: D:\MSc_Project\Models\DQN-baseline\runs\dqn_obs13_fc64_64_act5_5obs_(3)\Final_Evaluation_Records.csv

@@ -14,7 +14,7 @@ from tf_agents.utils import common
 from Hybrid_train_module import TFAgentSimulationEnv
 
 
-CHECKPOINT_DIR = r"D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(1)\checkpoint"  # 改成你的 checkpoint 文件夹
+CHECKPOINT_DIR = r"D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(2)\checkpoint"  # 改成你的 checkpoint 文件夹
 NUM_EPISODES = 50
 FPS = 30
 

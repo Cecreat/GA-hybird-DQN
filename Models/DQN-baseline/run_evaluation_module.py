@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 def main():
-    run_dir = BASE_DIR / "runs" / "dqn_obs13_fc64_64_act5_5obs_(1)"
+    run_dir = BASE_DIR / "runs" / "dqn_obs13_fc64_64_act5_5obs_(3)"
 
     checkpoint_dir = run_dir / "checkpoint"
     final_eval_records_path = run_dir / "Final_Evaluation_Records.csv"

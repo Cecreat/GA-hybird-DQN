@@ -42,3 +42,58 @@ Boundary Collision Count: 0
 Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
 Path Efficiency: {'success_count': 45, 'mean_path_efficiency': 1.1275720596313477, 'median_path_efficiency': 1.0416375398635864, 'min_path_efficiency': 0.9703128337860107, 'max_path_efficiency': 2.166210889816284}
 Final evaluation records saved to: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(2)\Final_Hybrid_Evaluation_Records.csv
+
+
+
+
+----------------------------------------------------------------------------
+
+
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 111.103
+Success Rate: 0.740
+Collision Rate: 0.260
+Obstacle Collision Rate: 0.240
+Boundary Collision Rate: 0.020
+Success Count: 74
+Collision Count: 26
+Obstacle Collision Count: 24
+Boundary Collision Count: 2
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 74, 'mean_path_efficiency': 1.0249059200286865, 'median_path_efficiency': 0.9826877117156982, 'min_path_efficiency': 0.9501298069953918, 'max_path_efficiency': 1.5505696535110474}
+Final evaluation records saved to: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(1)\Final_Hybrid_Evaluation_Records_show.csv
+
+
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 114.224
+Success Rate: 0.760
+Collision Rate: 0.240
+Obstacle Collision Rate: 0.240
+Boundary Collision Rate: 0.000
+Success Count: 76
+Collision Count: 24
+Obstacle Collision Count: 24
+Boundary Collision Count: 0
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 76, 'mean_path_efficiency': 1.0365629196166992, 'median_path_efficiency': 1.0125696659088135, 'min_path_efficiency': 0.9567950367927551, 'max_path_efficiency': 1.3033196926116943}
+Final evaluation records saved to: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(2)\Final_Hybrid_Evaluation_Records_show.csv
+
+
+[Final DQN Policy Evaluation]
+Num Episodes: 100
+Avg Return: 95.564
+Success Rate: 0.660
+Collision Rate: 0.340
+Obstacle Collision Rate: 0.290
+Boundary Collision Rate: 0.050
+Success Count: 66
+Collision Count: 34
+Obstacle Collision Count: 29
+Boundary Collision Count: 5
+Steps to Success: {'success_count': 0, 'mean_steps': None, 'median_steps': None, 'min_steps': None, 'max_steps': None}
+Path Efficiency: {'success_count': 66, 'mean_path_efficiency': 1.0540189743041992, 'median_path_efficiency': 1.0296430587768555, 'min_path_efficiency': 0.9546515941619873, 'max_path_efficiency': 1.512652039527893}
+Final evaluation records saved to: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\Final_Hybrid_Evaluation_Records_show.csv

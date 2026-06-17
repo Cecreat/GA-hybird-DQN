@@ -166,7 +166,7 @@ class Hybrid_Train:
         epsilon_initial = 0.5
         epsilon_final = 0.05
 
-        run_dir = BASE_DIR / "runs" / "hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(3)"
+        run_dir = BASE_DIR / "runs" / "hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)"
         checkpoint_dir = run_dir / "checkpoint"
 
         plot_path = run_dir / "Hybrid_Convergence_Curve.png"
@@ -177,8 +177,8 @@ class Hybrid_Train:
         ga_params_path = (
             BASE_DIR
             / "runs"
-            / "ga_heuristic_controller"
-            / "best_ga_heuristic_params.npy"
+            / "ga_heuristic_controller_5obs"
+            / "best_ga_heuristic_params_5obs.npy"
         )
 
         run_dir.mkdir(parents=True, exist_ok=True)
@@ -425,6 +425,7 @@ class Hybrid_Train:
                     plot_steps=plot_steps,
                     plot_returns=plot_returns,
                     plot_path=plot_path,
+                    label="Hybrid DQN"
                 )
 
                 self.utils.plot_collision_rate_curve(

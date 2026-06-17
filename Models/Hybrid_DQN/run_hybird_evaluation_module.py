@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 def main():
-    run_dir = BASE_DIR / "runs" / "hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_(2)"
+    run_dir = BASE_DIR / "runs" / "hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)"
 
     checkpoint_dir = run_dir / "checkpoint"
     final_eval_records_path = run_dir / "Final_Hybrid_Evaluation_Records_show.csv"
@@ -23,7 +23,7 @@ def main():
     )
 
     summary = evaluator.evaluate_policy(
-        num_episodes=5,
+        num_episodes=100,
         max_steps_per_episode=1000
     )
 
