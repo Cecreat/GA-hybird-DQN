@@ -66,3 +66,21 @@ Hybrid episode records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybri
 Hybrid monitor records 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\Hybrid_Training_Monitor_Records.csv
 Hybrid convergence curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\Hybrid_Convergence_Curve.png
 Hybrid collision curve 已保存至: D:\MSc_Project\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)\Hybrid_Early_Collision_Rate_Decay_Curve.png
+
+
+
+------------------------------------------------------------------
+[Hybrid DQN] 训练结束，保存最终 latest checkpoint...
+最终 latest checkpoint 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\checkpoint
+Hybrid Training Early Collision Rate: 0.708
+Hybrid Training Success Rate: 0.329
+Hybrid Convergence Stats: {'converged': True, 'convergence_step': 28000, 'convergence_return': 40.6144344329834}
+Hybrid Best Checkpoint Dir: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\best_checkpoint
+Hybrid Best Selection Record: {'step': 200000, 'num_episodes': 100, 'avg_return': 78.19286346435547, 'success_rate': 0.54, 'collision_rate': 0.46, 'obstacle_collision_rate': 0.44, 'boundary_collision_rate': 0.02, 'success_count': 54, 'collision_count': 46, 'checkpoint_dir': 'D:\\MSc_Project-improve\\Models\\Hybrid_DQN\\runs\\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\\candidate_checkpoints\\step_200000'}
+Episode records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\Hybrid_Training_Episode_Records.csv
+Hybrid episode records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\Hybrid_Training_Episode_Records.csv
+Hybrid monitor records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\Hybrid_Training_Monitor_Records.csv
+Hybrid checkpoint selection records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\Hybrid_Checkpoint_Selection_Records.csv
+Hybrid GA success warm-start records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\Hybrid_GA_Success_WarmStart_Records.csv
+Hybrid convergence curve 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\Hybrid_Convergence_Curve.png
+Hybrid collision curve 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_15obstacles\Hybrid_Early_Collision_Rate_Decay_Curve.png

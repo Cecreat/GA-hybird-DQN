@@ -1,0 +1,14 @@
+[Hybrid DQN] 训练结束，保存最终 latest checkpoint...
+最终 latest checkpoint 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\checkpoint
+Hybrid Training Early Collision Rate: 0.712
+Hybrid Training Success Rate: 0.341
+Hybrid Convergence Stats: {'converged': True, 'convergence_step': 12000, 'convergence_return': 42.229217529296875}
+Hybrid Best Checkpoint Dir: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\best_checkpoint
+Hybrid Best Selection Record: {'step': 100000, 'num_episodes': 100, 'avg_return': 92.3831558227539, 'success_rate': 0.64, 'collision_rate': 0.36, 'obstacle_collision_rate': 0.33, 'boundary_collision_rate': 0.03, 'success_count': 64, 'collision_count': 36, 'checkpoint_dir': 'D:\\MSc_Project-improve\\Models\\Hybrid_DQN\\runs\\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\\candidate_checkpoints\\step_100000'}
+Episode records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\Hybrid_Training_Episode_Records.csv
+Hybrid episode records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\Hybrid_Training_Episode_Records.csv
+Hybrid monitor records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\Hybrid_Training_Monitor_Records.csv
+Hybrid checkpoint selection records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\Hybrid_Checkpoint_Selection_Records.csv
+Hybrid GA success warm-start records 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\Hybrid_GA_Success_WarmStart_Records.csv
+Hybrid convergence curve 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\Hybrid_Convergence_Curve.png
+Hybrid collision curve 已保存至: D:\MSc_Project-improve\Models\Hybrid_DQN\runs\hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.1_(3)\Hybrid_Early_Collision_Rate_Decay_Curve.png

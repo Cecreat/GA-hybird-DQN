@@ -11,31 +11,37 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 def main():
-    run_dir = BASE_DIR / "runs" / "hybrid_ga_heuristic_dqn_obs13_fc64_64_act5_5obs(3)"
+    # Hybrid DQN run directory
+    run_dir = BASE_DIR / "runs" / "hybrid_ga_heuristic_dqn_framestack4_obs52_fc64_64_act5_15obstacles_improve_epsilon_0.01"
 
-    checkpoint_dir = run_dir / "checkpoint"
-    final_eval_records_path = run_dir / "Final_Hybrid_Evaluation_Records_show.csv"
+    # 使用 best checkpoint，而不是最后一个 latest checkpoint
+    checkpoint_dir = run_dir / "best_checkpoint"
+
+    # fixed-seed 评估输出目录
+    fixed_seed_eval_dir = run_dir / "fixed_seed_eval"
 
     evaluator = DQNEvaluator(
         checkpoint_dir=checkpoint_dir,
-        fc_layer_params=(64, 64),
-        learning_rate=5e-4
+        fc_layer_params=(128, 128),
+        learning_rate=1e-4
     )
 
-    summary = evaluator.evaluate_policy(
-        num_episodes=100,
-        max_steps_per_episode=1000
+    result = evaluator.evaluate_policy_fixed_seeds(
+        seed_list=[0, 1, 2, 3, 4],
+        episodes_per_seed=500,
+        max_steps_per_episode=1000,
+        save_dir=fixed_seed_eval_dir
     )
 
-    evaluator.print_summary(
-        summary,
-        prefix="Final DQN Policy Evaluation"
+    evaluator.print_fixed_seed_summary(
+        result,
+        prefix="Fixed-Seed Hybrid DQN Policy Evaluation"
     )
 
-    evaluator.save_eval_records(final_eval_records_path)
-
-    print("\n评估完成。")
-    print(f"Final evaluation records saved to: {final_eval_records_path}")
+    print("\n固定随机种子评估完成。")
+    print(f"Fixed-seed evaluation results saved to: {fixed_seed_eval_dir}")
+    print(f"Per-seed summary: {fixed_seed_eval_dir / 'FixedSeed_Evaluation_PerSeed_Summary.csv'}")
+    print(f"Mean/std summary: {fixed_seed_eval_dir / 'FixedSeed_Evaluation_MeanStd.csv'}")
 
 
 if __name__ == "__main__":

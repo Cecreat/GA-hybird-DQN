@@ -37,6 +37,9 @@ from Env import SimulationEnv
 # ------------------------------------------------------------
 # 动作映射：必须和 DQN / TFEnv 保持一致
 # ------------------------------------------------------------
+SINGLE_FRAME_OBS_DIM = 13
+
+
 ACTION_MAPPING = {
     0: -1.0,
     1: -0.5,
@@ -96,12 +99,43 @@ PARAM_BOUNDS = np.array([
 ], dtype=np.float32)
 
 
+def extract_latest_observation(state, single_frame_dim=SINGLE_FRAME_OBS_DIM):
+    """
+    兼容单帧 observation 和 frame-stacked observation。
+
+    - 13 维: 直接作为当前帧；
+    - 52 维: 取最后 13 维作为最新一帧；
+    - 65 维等其它 N*13 维: 同样取最后 13 维。
+
+    这样 GA 仍然只搜索 7 维启发式参数，不会因为 frame stacking
+    直接扩展到 52 维参数搜索空间。
+    """
+    state = np.asarray(state, dtype=np.float32).reshape(-1)
+
+    if state.shape[0] == single_frame_dim:
+        return state
+
+    if state.shape[0] > single_frame_dim and state.shape[0] % single_frame_dim == 0:
+        return state[-single_frame_dim:]
+
+    raise ValueError(
+        f"无法解析 observation 维度: {state.shape[0]}。"
+        f"期望 {single_frame_dim} 或其整数倍。"
+    )
+
+
 def heuristic_action(state, params):
     """
-    根据 13 维状态和 GA 参数输出离散动作 index: 0..4。
+    根据 observation 和 GA 参数输出离散动作 index: 0..4。
+
+    observation 可以是：
+        - 13 维单帧状态；
+        - 52 维 frame_stack=4 状态。
+
+    GA controller 只使用最新一帧 13 维状态进行启发式决策。
     """
 
-    state = np.asarray(state, dtype=np.float32)
+    state = extract_latest_observation(state)
     params = np.asarray(params, dtype=np.float32)
 
     rays = np.clip(state[:11], 0.0, 1.0)
@@ -598,10 +632,10 @@ def save_history(history, csv_path):
 if __name__ == "__main__":
     np.random.seed(42)
 
-    run_dir = CURRENT_DIR / "runs" / "ga_heuristic_controller_5obs"
+    run_dir = CURRENT_DIR / "runs" / "ga_heuristic_controller_15obs_improve"
     run_dir.mkdir(parents=True, exist_ok=True)
 
-    best_params_path = run_dir / "best_ga_heuristic_params_5obs.npy"
+    best_params_path = run_dir / "best_ga_heuristic_params_15obs_improve.npy"
     final_eval_csv_path = run_dir / "GA_Heuristic_Final_Evaluation.csv"
 
     print("开始 GA 进化低维启发式控制器参数。")
